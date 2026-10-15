@@ -1,12 +1,33 @@
 name: ci
-on: [push, pull_request]
+
+on:
+  push:
+  pull_request:
+
 jobs:
-  test:
+  check:
     runs-on: ubuntu-latest
+    env:
+      AUTH_SECRET: ci-auth-secret-not-for-production
+      DATABASE_URL: file:./dev.db
+      NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-      - run: pip install pytest
-      - run: pytest -q
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run db:generate
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm run build:demo
+      - name: Static demo contains the app
+        run: |
+          test -f out/index.html
+          grep -q "Jobtrackr" out/index.html
+          grep -q "/jobtrackr/" out/index.html
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

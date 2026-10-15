@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 40 33% 93%;
+  --foreground: 30 10% 10%;
+  --card: 40 60% 99%;
+  --card-foreground: 30 10% 10%;
+  --primary: 16 89% 41%;
+  --primary-foreground: 40 40% 98%;
+  --secondary: 36 22% 90%;
+  --secondary-foreground: 30 10% 14%;
+  --muted: 36 18% 90%;
+  --muted-foreground: 30 6% 36%;
+  --accent: 36 24% 88%;
+  --accent-foreground: 30 10% 14%;
+  --destructive: 347 77% 41%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 36 16% 84%;
+  --input: 36 16% 82%;
+  --ring: 16 89% 41%;
+  --radius: 0.9rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: hsl(var(--foreground));
+  background:
+    radial-gradient(ellipse 70% 45% at 0% -10%, rgba(194, 65, 12, 0.09), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 100% 0%, rgba(15, 110, 107, 0.08), transparent 50%),
+    hsl(var(--background));
+}
+
+::selection {
+  background: rgba(194, 65, 12, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
