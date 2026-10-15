@@ -114,7 +114,7 @@ Demo mode does not use this path. It never opens a database and it has no sessio
 
 `npm run build:demo` sets that flag plus `DEMO_EXPORT=1`, which turns on `output: 'export'`, `basePath: '/jobtrackr'`, and a page extension list that leaves out Auth.js routes and server actions. Those files use a `.server.ts` / `.server.tsx` suffix and are only compiled into the Node server build. GitHub Pages cannot run them.
 
-The [pages workflow](.github/workflows/pages.yml) publishes `out/` on every push to `main`. If Pages is not on yet, that workflow turns it on with a GitHub Actions source, then deploys. The site is [naveecode.github.io/jobtrackr](https://naveecode.github.io/jobtrackr/).
+The [pages workflow](.github/workflows/pages.yml) publishes `out/` on every push to `main`. Pages has to be enabled once by a repository admin (Settings → Pages → Source: GitHub Actions) before the first deploy can succeed. `GITHUB_TOKEN` can deploy a site, and it cannot create one. The site is [naveecode.github.io/jobtrackr](https://naveecode.github.io/jobtrackr/).
 
 ## Local development
 
